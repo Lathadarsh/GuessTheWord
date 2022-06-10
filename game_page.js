@@ -14,6 +14,9 @@ document.getElementById("player2_score").innerHTML= player2_score;
 document.getElementById("player_question").innerHTML = "Question Turn - " + player1_name;
 document.getElementById("player_answer").innerHTML = "Answer Turn - " + player2_name;
 
+player_question = "player1";
+player_answer = "player2";
+
 function send() {
     get_word = document.getElementById("word").value;
     word = get_word.toLowerCase();
@@ -39,4 +42,37 @@ function send() {
     document.getElementById("output").innerHTML = row;
     document.getElementById("word").value = "";
 
+}
+
+function check() {
+    get_answer = document.getElementById("input_check_box").value;
+    answer = get_answer.toLowerCase();
+    console.log("answer = " + answer);
+    if (answer == word) {
+        if(player_answer == "player2") {
+            player2_score= player2_score + 1;
+            document.getElementById("player2_score").innerHTML = player2_score;
+        }
+        else {
+            player1_score= player1_score + 1;
+            document.getElementById("player1_score").innerHTML = player1_score;
+        }
+    }
+    if (player_question == "player1") {
+        player_question = "player2";
+        document.getElementById("player_question").innerHTML = "Question Turn = " + player2_name;
+    }
+    else {
+        player_question = "player1";
+        document.getElementById("player_question").innerHTML = "Question Turn = " + player1_name;
+    }
+    if (player_answer == "player1") {
+        player_answer = "player2";
+        document.getElementById("player_answer").innerHTML = "Answer Turn = " + player2_name;
+    }
+    else {
+        player_answer = "player1";
+        document.getElementById("player_answer").innerHTML = "Answer Turn = " + player1_name;
+    }
+    document.getElementById("output").innerHTML = "";
 }
